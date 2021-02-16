@@ -25,3 +25,14 @@ var svg = d3
 // to the margins set in the "chartMargin" object.
 var chartGroup = svg.append("g")
 .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
+
+d3.csv("data.csv"),function(err, healthData) {
+    if(err) throw err;
+
+    healthData.forEach(function(data) {
+        data.poverty = +data.poverty;
+        data.phys_act = +data.phys_act;
+    });
+
+var x = d3.scale.linear().range([0, width]);
+var y = d3.scale.linear().range([height, 0]);
