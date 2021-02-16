@@ -20,3 +20,8 @@ var svg = d3
   .append("svg")
   .attr("height", svgHeight)
   .attr("width", svgWidth);
+
+  // Append a group to the SVG area and shift ('translate') it to the right and down to adhere
+// to the margins set in the "chartMargin" object.
+var chartGroup = svg.append("g")
+.attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
