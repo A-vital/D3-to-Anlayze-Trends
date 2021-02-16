@@ -31,7 +31,7 @@ d3.csv("data.csv"),function(err, healthData) {
 
     healthData.forEach(function(data) {
         data.poverty = +data.poverty;
-        data.phys_act = +data.phys_act;
+        data.healthcare = +data.healthcare;
     });
 
 var x = d3.scale.linear().range([0, width]);
@@ -65,5 +65,5 @@ yLinearScale.domain([yMin, yMax]);
  var toolTip = d3.select("body")
  .append("div")
  .classed("tooltip", true);
- 
+
 }
