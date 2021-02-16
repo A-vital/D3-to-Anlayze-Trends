@@ -36,3 +36,34 @@ d3.csv("data.csv"),function(err, healthData) {
 
 var x = d3.scale.linear().range([0, width]);
 var y = d3.scale.linear().range([height, 0]);
+
+// Create axis functions
+var bottomAxis = d3.axisBottom(xLinearScale);
+var leftAxis = d3.axisLeft(yLinearScale);
+
+// Scale the domain
+var xMin = d3.min(healthData, function(data) {
+    return +data.poverty * 0.95;
+});
+
+var xMax = d3.max(healthData, function(data) {
+    return +data.poverty * 1.05;
+});
+
+var yMin = d3.min(healthData, function(data) {
+    return +data.phys_act * 0.98;
+});
+
+var yMax = d3.max(healthData, function(data) {
+    return +data.phys_act *1.02;
+});
+
+xLinearScale.domain([xMin, xMax]);
+yLinearScale.domain([yMin, yMax]);
+
+ // Step 1: Append tooltip div
+ var toolTip = d3.select("body")
+ .append("div")
+ .classed("tooltip", true);
+ 
+}
