@@ -4,10 +4,10 @@ var svgHeight = 660;
 
 // Define the chart's margins as an object
 var chartMargin = {
-  top: 30,
-  right: 30,
-  bottom: 30,
-  left: 30
+  top: 20,
+  right: 40,
+  bottom: 60,
+  left: 100
 };
 
 // Define dimensions of the chart area
@@ -16,10 +16,10 @@ var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 
 // Select body, append SVG area to it, and set the dimensions
 var svg = d3
-  .select("body")
-  .append("svg")
-  .attr("height", svgHeight)
-  .attr("width", svgWidth);
+  .select('body')
+  .append('svg')
+  .attr('height', svgHeight)
+  .attr('width', svgWidth);
 
   // Append a group to the SVG area and shift ('translate') it to the right and down to adhere
 // to the margins set in the "chartMargin" object.
