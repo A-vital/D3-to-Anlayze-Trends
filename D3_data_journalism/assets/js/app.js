@@ -19,12 +19,13 @@ var svg = d3
   .select('body')
   .append('svg')
   .attr('height', svgHeight)
-  .attr('width', svgWidth);
+  .attr('width', svgWidth)
+  .append('g')
+  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
   // Append a group to the SVG area and shift ('translate') it to the right and down to adhere
 // to the margins set in the "chartMargin" object.
-var chartGroup = svg.append("g")
-.attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
+var chartGroup = svg.append('g');
 
 d3.csv("data.csv"),function(err, healthData) {
     if(err) throw err;
