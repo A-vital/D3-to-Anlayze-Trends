@@ -17,7 +17,6 @@ var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 // Select body, append SVG area to it, and set the dimensions
 var svg = d3
     .select("#scatter")
-    .select('body')
     .append('svg')
     .append('g')
     .attr('height', svgHeight)
@@ -29,10 +28,10 @@ var svg = d3
 var chartGroup = svg.append('g')
     .attr('transform', 'translate(' + chartMargin.left + chartMargin.top + ')'); 
 
-d3.csv("data.csv"),function(err, healthData) {
+    d3.csv('assets/data/data.csv').then(function(data, err) {
     if(err) throw err;
 
-    healthData.forEach(function(data) {
+    data.forEach(function(data) {
         data.poverty = +data.poverty;
         data.healthcare = +data.healthcare;
     });
@@ -153,4 +152,4 @@ chart
 )
 .attr("class", "axis-text")
 .text("In Poverty (%)");
-};
+});
