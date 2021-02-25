@@ -16,17 +16,18 @@ var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 
 // Select body, append SVG area to it, and set the dimensions
 var svg = d3
-  .select('.chart')
-  .select('body')
-  .append('svg')
-  .attr('height', svgHeight)
-  .attr('width', svgWidth)
-  .append('g')
-  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+    .select("#scatter")
+    .select('body')
+    .append('svg')
+    .append('g')
+    .attr('height', svgHeight)
+    .attr('width', svgWidth)
+    .attr('transform', 'translate(' + chartMargin.left + ',' + chartMargin.top + ')');
 
   // Append a group to the SVG area and shift ('translate') it to the right and down to adhere
 // to the margins set in the "chartMargin" object.
-var chartGroup = svg.append('g');
+var chartGroup = svg.append('g')
+    .attr('transform', 'translate(' + chartMargin.left + chartMargin.top + ')'); 
 
 d3.csv("data.csv"),function(err, healthData) {
     if(err) throw err;
@@ -89,10 +90,10 @@ chart.selectAll("circle")
 .data(healthData)
 .enter()
 .append("circle")
-.attr("cx", function(data, index) {
+.attr("cx", function(data) {
     return xLinearScale(data.poverty)
 })
-.attr("cy", function(data, index) {
+.attr("cy", function(data) {
     return yLinearScale(data.phys_act)
 })
 .attr("r", "15")
@@ -102,7 +103,7 @@ chart.selectAll("circle")
     toolTip.show(data);
 })
 // hide tooltip on mouseout
-.on("mouseout", function(data, index) {
+.on("mouseout", function(data) {
     toolTip.hide(data);
 });
 
